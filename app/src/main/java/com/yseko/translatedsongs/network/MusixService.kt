@@ -29,6 +29,7 @@ interface MusixService {
     @GET("track.search")
     suspend fun searchTrack(
         @Query("q_track") qTrack: String,
+        @Query("q_artist") qArtist: String,
         @Query("apikey") apikey: String
     ): ResponseTracks
 }

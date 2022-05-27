@@ -19,6 +19,8 @@ data class Lyrics(
     @Json(name="lyrics_body") val lyricsBody: String
 )
 
+
+
 data class ResponseTracks(
     val message: MessageTracks
 )

@@ -26,7 +26,7 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonPickSong.setOnClickListener{
-            val action = StartFragmentDirections.actionStartFragmentToLyricsFragment()
+            val action = StartFragmentDirections.actionStartFragmentToPickSongFragment()
             this.findNavController().navigate(action)
         }
     }

@@ -6,15 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.yseko.translatedsongs.R
+import androidx.navigation.fragment.navArgs
 import com.yseko.translatedsongs.databinding.FragmentLyricsBinding
 
 
 class LyricsFragment : Fragment() {
-    private val viewModel: OverviewViewModel by viewModels()
+    private val viewModel: PickSongViewModel by viewModels()
 
     private var _binding: FragmentLyricsBinding? = null
     private val binding get() = _binding!!
+    private val navigationArgs: LyricsFragmentArgs by navArgs()
 
     /**
      * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
@@ -30,6 +31,10 @@ class LyricsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 
 
 }

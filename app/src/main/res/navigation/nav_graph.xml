@@ -10,13 +10,26 @@
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
-            android:id="@+id/action_startFragment_to_lyricsFragment"
-            app:destination="@id/lyricsFragment" />
+            android:id="@+id/action_startFragment_to_pickSongFragment"
+            app:destination="@id/pickSongFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/lyricsFragment"
         android:name="com.yseko.translatedsongs.overview.LyricsFragment"
-        android:label="LyricsFragment" />
+        android:label="LyricsFragment" >
+        <argument
+            android:name="commonTrackId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/pickSongFragment"
+        android:name="com.yseko.translatedsongs.overview.PickSongFragment"
+        android:label="fragment_pick_song"
+        tools:layout="@layout/fragment_pick_song" >
+        <action
+            android:id="@+id/action_pickSongFragment_to_lyricsFragment"
+            app:destination="@id/lyricsFragment" />
+    </fragment>
 
 </navigation>

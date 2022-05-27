@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.yseko.translatedsongs.overview.OverviewViewModel" />
+            type="com.yseko.translatedsongs.overview.PickSongViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
         <TextView
             android:id="@+id/lyricText"
-            android:text="@{viewModel.status}"
+            android:text="@{viewModel.output}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"

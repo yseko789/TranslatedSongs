@@ -8,4 +8,6 @@
 
     <string name="instructionPickSong">Enter a song!</string>
     <string name="hintPickSong">Song...</string>
+    <string name="hintPickArtist">Artist...</string>
+    <string name="search">Search</string>
 </resources>
