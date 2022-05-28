@@ -1,9 +1,15 @@
 package com.yseko.translatedsongs.overview
 
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.mlkit.common.model.DownloadConditions
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.TranslatorOptions
 import com.yseko.translatedsongs.BuildConfig
 import com.yseko.translatedsongs.network.*
 import kotlinx.coroutines.launch
@@ -13,7 +19,10 @@ class PickSongViewModel: ViewModel() {
     private var _output = MutableLiveData<String>()
     val output: LiveData<String> = _output
 
+    private var _temp = MutableLiveData<String>()
+    val temp: LiveData<String> = _temp
 
+    private val apikey = "6ce318495d8c4889125fdf7c3965c1d9"
 
     private var _responseTracks = MutableLiveData<ResponseTracks>()
     val responseTracks: LiveData<ResponseTracks> = _responseTracks
@@ -32,7 +41,9 @@ class PickSongViewModel: ViewModel() {
         viewModelScope.launch {
             try{
                 _responseLyrics.value = MusixApi.retrofitService.getLyrics(commonTrackId, apikey)
-                _output.value = _responseLyrics.value!!.message.body.lyrics.lyricsBody.toString()
+                _temp.value = _responseLyrics.value!!.message.body.lyrics.lyricsBody
+//                _output.value = _responseLyrics.value!!.message.body.lyrics.lyricsBody
+                setupTranslator()
             }catch (e: Exception){
                 _output.value = "Failure: ${e.message}"
             }
@@ -43,12 +54,57 @@ class PickSongViewModel: ViewModel() {
     fun searchTracks(qTrack: String, qArtist: String){
         viewModelScope.launch {
             try{
-                _responseTracks.value = MusixApi.retrofitService.searchTrack(qTrack, qArtist, apikey)
+                _responseTracks.value = MusixApi.retrofitService.searchTrack(qTrack, qArtist, "desc", apikey)
                 _output.value = _responseTracks.value!!.message.body.trackList.toString()
                 _trackList.value = responseTracks.value!!.message.body.trackList
             }catch (e: Exception){
                 _output.value = "Failure: ${e.message}"
             }
         }
+    }
+
+    private fun setupTranslator(){
+        val options = TranslatorOptions.Builder()
+            .setSourceLanguage(TranslateLanguage.ENGLISH)
+            .setTargetLanguage(TranslateLanguage.SPANISH)
+            .build()
+
+        val translatorEnglishJapanese = Translation.getClient(options)
+
+        val conditions = DownloadConditions.Builder()
+            .requireWifi()
+            .build()
+
+        translatorEnglishJapanese.downloadModelIfNeeded(conditions)
+
+        translatorEnglishJapanese.translate(temp.value.toString().dropLast(70))
+            .addOnSuccessListener {
+                _temp.value = it
+            }
+            .addOnFailureListener{
+                _output.value = "fail"
+            }
+
+        val optionsTwo = TranslatorOptions.Builder()
+            .setSourceLanguage(TranslateLanguage.SPANISH)
+            .setTargetLanguage(TranslateLanguage.ENGLISH)
+            .build()
+
+        val translatorJapaneseEnglish = Translation.getClient(optionsTwo)
+
+        val conditionsTwo = DownloadConditions.Builder()
+            .requireWifi()
+            .build()
+
+        translatorJapaneseEnglish.downloadModelIfNeeded(conditionsTwo)
+
+        translatorJapaneseEnglish.translate(temp.value.toString().dropLast(70))
+            .addOnSuccessListener {
+                _output.value = it
+            }
+            .addOnFailureListener{
+                _output.value = "fail"
+            }
+
     }
 }
