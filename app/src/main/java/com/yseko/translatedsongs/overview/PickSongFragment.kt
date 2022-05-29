@@ -37,7 +37,7 @@ class PickSongFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = TrackListAdapter {
-            val action = PickSongFragmentDirections.actionPickSongFragmentToLyricsFragment(it.track.commonTrackId)
+            val action = PickSongFragmentDirections.actionPickSongFragmentToLyricsFragment(it.track.commonTrackId, it.track.artistName, it.track.trackName)
             this.findNavController().navigate(action)
         }
 

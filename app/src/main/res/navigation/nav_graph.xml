@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/startFragment"
         android:name="com.yseko.translatedsongs.overview.StartFragment"
-        android:label="fragment_start"
-        tools:layout="@layout/fragment_start" >
+        android:label="@string/instructionStart"
+        tools:layout="@layout/fragment_start">
         <action
             android:id="@+id/action_startFragment_to_pickSongFragment"
             app:destination="@id/pickSongFragment" />
@@ -17,16 +17,22 @@
     <fragment
         android:id="@+id/lyricsFragment"
         android:name="com.yseko.translatedsongs.overview.LyricsFragment"
-        android:label="LyricsFragment" >
+        android:label="@string/instructionLyrics">
         <argument
             android:name="commonTrackId"
+            app:argType="string" />
+        <argument
+            android:name="qArtist"
+            app:argType="string" />
+        <argument
+            android:name="qTrack"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pickSongFragment"
         android:name="com.yseko.translatedsongs.overview.PickSongFragment"
-        android:label="fragment_pick_song"
-        tools:layout="@layout/fragment_pick_song" >
+        android:label="@string/instructionPickSong"
+        tools:layout="@layout/fragment_pick_song">
         <action
             android:id="@+id/action_pickSongFragment_to_lyricsFragment"
             app:destination="@id/lyricsFragment" />

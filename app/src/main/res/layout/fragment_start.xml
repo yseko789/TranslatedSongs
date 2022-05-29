@@ -5,15 +5,17 @@
     tools:context=".overview.StartFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/instructionStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/instructionStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:padding="16dp">
+<!--        <TextView-->
+<!--            android:id="@+id/instructionStart"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/instructionStart"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"/>-->
         <Button
             android:id="@+id/buttonPickSong"
             android:layout_width="wrap_content"
@@ -21,7 +23,8 @@
             android:text="@string/buttonPickSong"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/instructionStart" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/buttons"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

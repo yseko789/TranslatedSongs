@@ -22,7 +22,7 @@ class PickSongViewModel: ViewModel() {
     private var _temp = MutableLiveData<String>()
     val temp: LiveData<String> = _temp
 
-    private val apikey = "6ce318495d8c4889125fdf7c3965c1d9"
+    private val apikey = ""
 
     private var _responseTracks = MutableLiveData<ResponseTracks>()
     val responseTracks: LiveData<ResponseTracks> = _responseTracks
@@ -69,15 +69,15 @@ class PickSongViewModel: ViewModel() {
             .setTargetLanguage(TranslateLanguage.SPANISH)
             .build()
 
-        val translatorEnglishJapanese = Translation.getClient(options)
+        val translatorEnglishSpanish = Translation.getClient(options)
 
         val conditions = DownloadConditions.Builder()
             .requireWifi()
             .build()
 
-        translatorEnglishJapanese.downloadModelIfNeeded(conditions)
+        translatorEnglishSpanish.downloadModelIfNeeded(conditions)
 
-        translatorEnglishJapanese.translate(temp.value.toString().dropLast(70))
+        translatorEnglishSpanish.translate(temp.value.toString().dropLast(70))
             .addOnSuccessListener {
                 _temp.value = it
             }
@@ -90,15 +90,15 @@ class PickSongViewModel: ViewModel() {
             .setTargetLanguage(TranslateLanguage.ENGLISH)
             .build()
 
-        val translatorJapaneseEnglish = Translation.getClient(optionsTwo)
+        val translatorSpanishEnglish = Translation.getClient(optionsTwo)
 
         val conditionsTwo = DownloadConditions.Builder()
             .requireWifi()
             .build()
 
-        translatorJapaneseEnglish.downloadModelIfNeeded(conditionsTwo)
+        translatorSpanishEnglish.downloadModelIfNeeded(conditionsTwo)
 
-        translatorJapaneseEnglish.translate(temp.value.toString().dropLast(70))
+        translatorSpanishEnglish.translate(temp.value.toString().dropLast(70))
             .addOnSuccessListener {
                 _output.value = it
             }

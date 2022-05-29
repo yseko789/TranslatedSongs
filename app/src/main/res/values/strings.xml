@@ -10,4 +10,10 @@
     <string name="hintPickSong">Song...</string>
     <string name="hintPickArtist">Artist...</string>
     <string name="search">Search</string>
+
+    <string name="instructionLyrics">Lyrics</string>
+    <string name="descriptionLyrics">The lyrics were translated to Spanish, and back to English. Have your friend guess the song!</string>
+    <string name="translate">Translate</string>
+    <string name="answer">See Song!</string>
+    <string name="dialogTitle">Song Answer</string>
 </resources>
