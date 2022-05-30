@@ -5,6 +5,7 @@
 
     <string name="instructionStart">Pick an option!</string>
     <string name="buttonPickSong">Pick a song</string>
+    <string name="temp">To be implemented...</string>
 
     <string name="instructionPickSong">Enter a song!</string>
     <string name="hintPickSong">Song...</string>
